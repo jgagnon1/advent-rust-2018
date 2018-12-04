@@ -1,0 +1,12 @@
+[package]
+name = "advent_of_rust_2018"
+version = "0.1.0"
+authors = ["Jerome Gagnon <jerome.gagnon.1@gmail.com"]
+
+[dependencies]
+clap = "*"
+itertools = "*"
+
+[[bin]]
+name = "aor"
+path = "src/main.rs"
