@@ -1,13 +1,13 @@
-use std::io;
+use std::io::{self, BufRead};
 use std::collections::HashSet;
 use itertools::Itertools;
 use itertools::FoldWhile::{Continue, Done};
-use util::read_file;
 
 pub fn solve() -> Result<(), io::Error> {
-	let input = read_file("./src/day1/input.txt")?;
-
-	let data: Vec<i32> = input.lines().filter_map(|s| s.parse::<i32>().ok()).collect();
+	let stdin = io::stdin();
+	let data: Vec<i32> = stdin.lock().lines()
+		.filter_map(|line| line.ok())
+		.filter_map(|s| s.parse::<i32>().ok()).collect();
 
 	let sum1: i32 = data.iter().sum();
 	println!("[Part 1] Result frequency is : {}", sum1.to_string());

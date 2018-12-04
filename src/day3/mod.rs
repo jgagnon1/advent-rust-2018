@@ -1,11 +1,12 @@
-use std::io;
+use std::io::{self, BufRead};
 use std::collections::HashMap;
 use std::collections::HashSet;
-use util::read_file;
 
 pub fn solve() -> Result<(), io::Error> {
-	let input = read_file("./src/day3/input.txt")?;
-	let data: Vec<&str> = input.lines().collect::<Vec<_>>();
+	let stdin = io::stdin();
+	let data: Vec<String> = stdin.lock().lines()
+		.filter_map(|line| line.ok())
+		.collect::<Vec<_>>();
 
 	let mut all = HashSet::new();
 	let claims = data.iter().fold(HashMap::new(), |mut claims, claim| {
@@ -25,7 +26,7 @@ pub fn solve() -> Result<(), io::Error> {
 	let intersect: Vec<&HashSet<usize>> = claims.values().filter(|v| v.len() > 1).collect();
 
 	let out1 = intersect.len();
-	println!("[Part 1] Intersecting claims : {}", out1.to_string()); // 103482
+	println!("[Part 1] Intersecting claims : {}", out1.to_string());
 
 	let overlaps: HashSet<usize> = intersect.iter()
 		.fold(HashSet::new(), |s1, s2| {

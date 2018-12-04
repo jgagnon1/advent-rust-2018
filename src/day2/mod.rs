@@ -1,12 +1,13 @@
-use std::io;
+use std::io::{self, BufRead};
 use std::collections::HashMap;
 use itertools::Itertools;
-use util::read_file;
 
 pub fn solve() -> Result<(), io::Error> {
-	let input = read_file("./src/day2/input.txt")?;
-
-	let data: Vec<Vec<char>> = input.lines().map(|s| s.chars().collect_vec()).collect();
+	let stdin = io::stdin();
+	let data: Vec<Vec<char>> = stdin.lock().lines()
+		.filter_map(|line| line.ok())
+		.map(|s| s.chars().collect_vec())
+		.collect();
 
 	let frequency_maps = data.iter().map(|code| {
 		code.iter()
@@ -51,7 +52,7 @@ pub fn solve() -> Result<(), io::Error> {
 	// TODO : Extract the char diff between 2 strings
 	let s1: String = a.iter().collect();
 	let s2: String = b.iter().collect();
-	println!("[Part 2] Codes matching (1diff) : {} & {}", s1, s2);
+	println!("[Part 2] Codes matching (distance 1) : {} & {}", s1, s2);
 
 	Ok(())
 }
