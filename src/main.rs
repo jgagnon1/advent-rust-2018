@@ -1,4 +1,6 @@
+extern crate chrono;
 extern crate clap;
+extern crate regex;
 extern crate itertools;
 
 use std::io;
@@ -8,6 +10,7 @@ mod util;
 mod day1;
 mod day2;
 mod day3;
+mod day4;
 
 fn main() -> Result<(), io::Error> {
 	let matches = App::new("Advent of Rust 2018")
@@ -28,6 +31,7 @@ fn main() -> Result<(), io::Error> {
 		1 => day1::solve(),
 		2 => day2::solve(),
 		3 => day3::solve(),
+		4 => day4::solve(),
 		_ => Ok(())
 	}
 }
