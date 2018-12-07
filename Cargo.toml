@@ -2,6 +2,7 @@
 name = "advent_of_rust_2018"
 version = "0.1.0"
 authors = ["Jerome Gagnon <jerome.gagnon.1@gmail.com"]
+edition = "2018"
 
 [dependencies]
 chrono = "*"
