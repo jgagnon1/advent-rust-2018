@@ -37,6 +37,7 @@ pub fn solve() -> Result<(), io::Error> {
     let sorted = records.iter().sorted_by(|a, b| a.dt.cmp(&b.dt));
 
     // TODO : Keep all hashmaps into 1 struct - Not too happy about all I have to carry through the fold, specially since mutable (defeats the point?)
+    #[allow(clippy::type_complexity)]
     let (_, _, overall_mins, overall_freq_mins, overall_freq_mins_count): (
         Option<u32>,
         Option<DateTime<Utc>>,
